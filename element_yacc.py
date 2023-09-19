@@ -1,5 +1,7 @@
 import ply.yacc as yacc
-from element_tokenizer import tokens
+from element_tokenizer import MyLexer
+
+tokens = MyLexer()
 
 # TODO:
 # create an itenorary of what the user can actually do
