@@ -1,5 +1,10 @@
 import ply.lex as lex
 
+# need to treat the class as an instance because when you using tokenizer and yacc you are creating 
+# instances instead of actually just creating a class because the program can't handle someone adding 
+# a new token and such in when mid run. So, later you need to also create an instance like just how you did 
+# here for the yacc 
+
 class MyLexer(object):
 
     tokens = (
@@ -16,6 +21,22 @@ class MyLexer(object):
         'WOOD',
         'METAL',
     )
+
+    def token_call(self):
+        tokensYacc = (
+        'PLUS',
+        'MINUS',
+        'MULTIPLY',
+        'DIVIDE',
+        'MODULO',
+        'WORD',
+        'NUMBER',
+        'WATER',
+        'EARTH',
+        'FIRE',
+        'WOOD',
+        'METAL',
+        )
 
     t_PLUS = r'\+'
     t_MINUS = r'\-'
