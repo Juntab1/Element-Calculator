@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 from element_tokenizer import MyLexer
 
-tokens = MyLexer()
+tokens = MyLexer.tokens
 
 # TODO:
 # create an itenorary of what the user can actually do
@@ -10,6 +10,7 @@ tokens = MyLexer()
 # maybe add an absolute value function for subtract and such
 # put the methods for words and integers in different in different classes or such
 # can do decimals if I want for a function
+# clean up the functions by making it more concise
 
 # logic is based off:
 # https://www.luminous-spaces.com/wp-content/uploads/2015/05/5elemnt2-cropped.png
