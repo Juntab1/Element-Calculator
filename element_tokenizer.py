@@ -22,22 +22,6 @@ class MyLexer(object):
         'METAL',
     )
 
-    def token_call(self):
-        tokensYacc = (
-        'PLUS',
-        'MINUS',
-        'MULTIPLY',
-        'DIVIDE',
-        'MODULO',
-        'WORD',
-        'NUMBER',
-        'WATER',
-        'EARTH',
-        'FIRE',
-        'WOOD',
-        'METAL',
-        )
-
     t_PLUS = r'\+'
     t_MINUS = r'\-'
     t_MULTIPLY = r'\*'
@@ -98,7 +82,8 @@ class MyLexer(object):
     def build(self, **kwargs):
         self.lexer = lex.lex(module = self, **kwargs)
 
-    def test(self, test):
+    def test(self, test, **kwargs):
+        self.lexer = lex.lex(module = self, **kwargs)
         self.lexer.input(test)
         while True:
             tok = self.lexer.token()
@@ -107,9 +92,12 @@ class MyLexer(object):
                 break
             print(f"({tok.type}, {tok.value})")
 
-m = MyLexer()
-m.build()
-m.test("3 + 3")
+
+def main():
+    m = MyLexer()
+    m.build()
 
 
 
+if __name__ == "__main__":
+    main()
