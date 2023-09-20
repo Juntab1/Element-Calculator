@@ -98,7 +98,8 @@ def main():
         except EOFError:
             break
         if not s: continue
-        result = parser.parse(s)
+        lexer = MyLexer().build()
+        result = parser.parse(s, lexer=lexer)
         print(result)
 
 if __name__ in "__main__":
