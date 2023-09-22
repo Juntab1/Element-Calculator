@@ -10,7 +10,8 @@ tokens = MyLexer.tokens
 # maybe add an absolute value function for subtract and such
 # put the methods for words and integers in different in different classes or such
 # can do decimals if I want for a function
-# clean up the functions by making it more concise
+# clean up the functions by making it more concise, figure out a way to make---
+# --- the elements concise
 
 # logic is based off:
 # https://www.luminous-spaces.com/wp-content/uploads/2015/05/5elemnt2-cropped.png
@@ -50,39 +51,32 @@ def p_expression_word_plus(p):
     'expression : term PLUS term'
     p[0] = F"{p[1]} + {p[3]} can't be added!"
 
-
-
-def p_expression_number_plus(p):
-    'expression : factor PLUS factor'
-    p[0] = p[1] + p[3]
-    
-def p_expression_number_minus(p):
-    'expression : factor MINUS factor'
-    p[0] = p[1] - p[3]
-
-def p_expression_number_divide(p):
-    'expression : factor DIVIDE factor'
-    if (p[3] == 0):
-        p[0] = "Can't divide by zero!"
-    else:
-        p[0] = int(p[1] / p[3])
-
-def p_expression_number_multiply(p):
-    'expression : factor MULTIPLY factor'
-    p[0] = p[1] * p[3]
-
-def p_expression_number_modulo(p):
-    'expression : factor MODULO factor'
-    if (p[3] == 0):
-        p[0] = "Can't do value % zero!!!"
-    else:
-        p[0] = p[1] % p[3]
+def p_expression_number_functions(p):
+    '''expression : factor PLUS factor
+                  | factor MINUS factor
+                  | factor DIVIDE factor
+                  | factor MULTIPLY factor
+                  | factor MODULO factor'''
+    if (p[2] == '+'):
+        p[0] = p[1] + p[3]
+    elif (p[2] == '-'):
+        p[0] = p[1] - p[3]
+    elif (p[2] == '/'):
+        if (p[3] == 0):
+            p[0] = "Can't divide by zero!"
+        else:
+            p[0] = int(p[1] / p[3])
+    elif (p[2] == '*'):
+        p[0] = p[1] * p[3]
+    elif (p[2] == '%'):
+        if (p[3] == 0):
+            p[0] = "Can't do value % zero!!!"
+        else:
+            p[0] = p[1] % p[3]
 
 def p_factor_num(p):
     'factor : NUMBER'
     p[0] = p[1]
-
-
 
 #Error rule for syntax errors
 def p_error(p):
