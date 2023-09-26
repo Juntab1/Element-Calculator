@@ -1,1 +1,433 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> expression
+Rule 1     expression -> WATER PLUS FIRE
+Rule 2     expression -> FIRE PLUS WATER
+Rule 3     expression -> FIRE PLUS METAL
+Rule 4     expression -> METAL PLUS FIRE
+Rule 5     expression -> WOOD PLUS EARTH
+Rule 6     expression -> EARTH PLUS WOOD
+Rule 7     expression -> METAL PLUS WOOD
+Rule 8     expression -> WOOD PLUS METAL
+Rule 9     expression -> EARTH PLUS WATER
+Rule 10    expression -> WATER PLUS EARTH
+Rule 11    term -> WORD
+Rule 12    expression -> term PLUS term
+Rule 13    expression -> ABS LPAREN factor MINUS factor RPAREN
+Rule 14    expression -> factor PLUS factor
+Rule 15    expression -> factor MINUS factor
+Rule 16    expression -> factor DIVIDE factor
+Rule 17    expression -> factor MULTIPLY factor
+Rule 18    expression -> factor MODULO factor
+Rule 19    factor -> NUMBER
+
+Terminals, with rules where they appear
+
+ABS                  : 13
+DIVIDE               : 16
+EARTH                : 5 6 9 10
+FIRE                 : 1 2 3 4
+LPAREN               : 13
+METAL                : 3 4 7 8
+MINUS                : 13 15
+MODULO               : 18
+MULTIPLY             : 17
+NUMBER               : 19
+PLUS                 : 1 2 3 4 5 6 7 8 9 10 12 14
+RPAREN               : 13
+WATER                : 1 2 9 10
+WOOD                 : 5 6 7 8
+WORD                 : 11
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 0
+factor               : 13 13 14 14 15 15 16 16 17 17 18 18
+term                 : 12 12
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . expression
+    (1) expression -> . WATER PLUS FIRE
+    (2) expression -> . FIRE PLUS WATER
+    (3) expression -> . FIRE PLUS METAL
+    (4) expression -> . METAL PLUS FIRE
+    (5) expression -> . WOOD PLUS EARTH
+    (6) expression -> . EARTH PLUS WOOD
+    (7) expression -> . METAL PLUS WOOD
+    (8) expression -> . WOOD PLUS METAL
+    (9) expression -> . EARTH PLUS WATER
+    (10) expression -> . WATER PLUS EARTH
+    (12) expression -> . term PLUS term
+    (13) expression -> . ABS LPAREN factor MINUS factor RPAREN
+    (14) expression -> . factor PLUS factor
+    (15) expression -> . factor MINUS factor
+    (16) expression -> . factor DIVIDE factor
+    (17) expression -> . factor MULTIPLY factor
+    (18) expression -> . factor MODULO factor
+    (11) term -> . WORD
+    (19) factor -> . NUMBER
+
+    WATER           shift and go to state 2
+    FIRE            shift and go to state 3
+    METAL           shift and go to state 4
+    WOOD            shift and go to state 5
+    EARTH           shift and go to state 6
+    ABS             shift and go to state 8
+    WORD            shift and go to state 10
+    NUMBER          shift and go to state 11
+
+    expression                     shift and go to state 1
+    term                           shift and go to state 7
+    factor                         shift and go to state 9
+
+state 1
+
+    (0) S' -> expression .
+
+
+
+state 2
+
+    (1) expression -> WATER . PLUS FIRE
+    (10) expression -> WATER . PLUS EARTH
+
+    PLUS            shift and go to state 12
+
+
+state 3
+
+    (2) expression -> FIRE . PLUS WATER
+    (3) expression -> FIRE . PLUS METAL
+
+    PLUS            shift and go to state 13
+
+
+state 4
+
+    (4) expression -> METAL . PLUS FIRE
+    (7) expression -> METAL . PLUS WOOD
+
+    PLUS            shift and go to state 14
+
+
+state 5
+
+    (5) expression -> WOOD . PLUS EARTH
+    (8) expression -> WOOD . PLUS METAL
+
+    PLUS            shift and go to state 15
+
+
+state 6
+
+    (6) expression -> EARTH . PLUS WOOD
+    (9) expression -> EARTH . PLUS WATER
+
+    PLUS            shift and go to state 16
+
+
+state 7
+
+    (12) expression -> term . PLUS term
+
+    PLUS            shift and go to state 17
+
+
+state 8
+
+    (13) expression -> ABS . LPAREN factor MINUS factor RPAREN
+
+    LPAREN          shift and go to state 18
+
+
+state 9
+
+    (14) expression -> factor . PLUS factor
+    (15) expression -> factor . MINUS factor
+    (16) expression -> factor . DIVIDE factor
+    (17) expression -> factor . MULTIPLY factor
+    (18) expression -> factor . MODULO factor
+
+    PLUS            shift and go to state 19
+    MINUS           shift and go to state 20
+    DIVIDE          shift and go to state 21
+    MULTIPLY        shift and go to state 22
+    MODULO          shift and go to state 23
+
+
+state 10
+
+    (11) term -> WORD .
+
+    PLUS            reduce using rule 11 (term -> WORD .)
+    $end            reduce using rule 11 (term -> WORD .)
+
+
+state 11
+
+    (19) factor -> NUMBER .
+
+    PLUS            reduce using rule 19 (factor -> NUMBER .)
+    MINUS           reduce using rule 19 (factor -> NUMBER .)
+    DIVIDE          reduce using rule 19 (factor -> NUMBER .)
+    MULTIPLY        reduce using rule 19 (factor -> NUMBER .)
+    MODULO          reduce using rule 19 (factor -> NUMBER .)
+    $end            reduce using rule 19 (factor -> NUMBER .)
+    RPAREN          reduce using rule 19 (factor -> NUMBER .)
+
+
+state 12
+
+    (1) expression -> WATER PLUS . FIRE
+    (10) expression -> WATER PLUS . EARTH
+
+    FIRE            shift and go to state 24
+    EARTH           shift and go to state 25
+
+
+state 13
+
+    (2) expression -> FIRE PLUS . WATER
+    (3) expression -> FIRE PLUS . METAL
+
+    WATER           shift and go to state 26
+    METAL           shift and go to state 27
+
+
+state 14
+
+    (4) expression -> METAL PLUS . FIRE
+    (7) expression -> METAL PLUS . WOOD
+
+    FIRE            shift and go to state 28
+    WOOD            shift and go to state 29
+
+
+state 15
+
+    (5) expression -> WOOD PLUS . EARTH
+    (8) expression -> WOOD PLUS . METAL
+
+    EARTH           shift and go to state 30
+    METAL           shift and go to state 31
+
+
+state 16
+
+    (6) expression -> EARTH PLUS . WOOD
+    (9) expression -> EARTH PLUS . WATER
+
+    WOOD            shift and go to state 32
+    WATER           shift and go to state 33
+
+
+state 17
+
+    (12) expression -> term PLUS . term
+    (11) term -> . WORD
+
+    WORD            shift and go to state 10
+
+    term                           shift and go to state 34
+
+state 18
+
+    (13) expression -> ABS LPAREN . factor MINUS factor RPAREN
+    (19) factor -> . NUMBER
+
+    NUMBER          shift and go to state 11
+
+    factor                         shift and go to state 35
+
+state 19
+
+    (14) expression -> factor PLUS . factor
+    (19) factor -> . NUMBER
+
+    NUMBER          shift and go to state 11
+
+    factor                         shift and go to state 36
+
+state 20
+
+    (15) expression -> factor MINUS . factor
+    (19) factor -> . NUMBER
+
+    NUMBER          shift and go to state 11
+
+    factor                         shift and go to state 37
+
+state 21
+
+    (16) expression -> factor DIVIDE . factor
+    (19) factor -> . NUMBER
+
+    NUMBER          shift and go to state 11
+
+    factor                         shift and go to state 38
+
+state 22
+
+    (17) expression -> factor MULTIPLY . factor
+    (19) factor -> . NUMBER
+
+    NUMBER          shift and go to state 11
+
+    factor                         shift and go to state 39
+
+state 23
+
+    (18) expression -> factor MODULO . factor
+    (19) factor -> . NUMBER
+
+    NUMBER          shift and go to state 11
+
+    factor                         shift and go to state 40
+
+state 24
+
+    (1) expression -> WATER PLUS FIRE .
+
+    $end            reduce using rule 1 (expression -> WATER PLUS FIRE .)
+
+
+state 25
+
+    (10) expression -> WATER PLUS EARTH .
+
+    $end            reduce using rule 10 (expression -> WATER PLUS EARTH .)
+
+
+state 26
+
+    (2) expression -> FIRE PLUS WATER .
+
+    $end            reduce using rule 2 (expression -> FIRE PLUS WATER .)
+
+
+state 27
+
+    (3) expression -> FIRE PLUS METAL .
+
+    $end            reduce using rule 3 (expression -> FIRE PLUS METAL .)
+
+
+state 28
+
+    (4) expression -> METAL PLUS FIRE .
+
+    $end            reduce using rule 4 (expression -> METAL PLUS FIRE .)
+
+
+state 29
+
+    (7) expression -> METAL PLUS WOOD .
+
+    $end            reduce using rule 7 (expression -> METAL PLUS WOOD .)
+
+
+state 30
+
+    (5) expression -> WOOD PLUS EARTH .
+
+    $end            reduce using rule 5 (expression -> WOOD PLUS EARTH .)
+
+
+state 31
+
+    (8) expression -> WOOD PLUS METAL .
+
+    $end            reduce using rule 8 (expression -> WOOD PLUS METAL .)
+
+
+state 32
+
+    (6) expression -> EARTH PLUS WOOD .
+
+    $end            reduce using rule 6 (expression -> EARTH PLUS WOOD .)
+
+
+state 33
+
+    (9) expression -> EARTH PLUS WATER .
+
+    $end            reduce using rule 9 (expression -> EARTH PLUS WATER .)
+
+
+state 34
+
+    (12) expression -> term PLUS term .
+
+    $end            reduce using rule 12 (expression -> term PLUS term .)
+
+
+state 35
+
+    (13) expression -> ABS LPAREN factor . MINUS factor RPAREN
+
+    MINUS           shift and go to state 41
+
+
+state 36
+
+    (14) expression -> factor PLUS factor .
+
+    $end            reduce using rule 14 (expression -> factor PLUS factor .)
+
+
+state 37
+
+    (15) expression -> factor MINUS factor .
+
+    $end            reduce using rule 15 (expression -> factor MINUS factor .)
+
+
+state 38
+
+    (16) expression -> factor DIVIDE factor .
+
+    $end            reduce using rule 16 (expression -> factor DIVIDE factor .)
+
+
+state 39
+
+    (17) expression -> factor MULTIPLY factor .
+
+    $end            reduce using rule 17 (expression -> factor MULTIPLY factor .)
+
+
+state 40
+
+    (18) expression -> factor MODULO factor .
+
+    $end            reduce using rule 18 (expression -> factor MODULO factor .)
+
+
+state 41
+
+    (13) expression -> ABS LPAREN factor MINUS . factor RPAREN
+    (19) factor -> . NUMBER
+
+    NUMBER          shift and go to state 11
+
+    factor                         shift and go to state 42
+
+state 42
+
+    (13) expression -> ABS LPAREN factor MINUS factor . RPAREN
+
+    RPAREN          shift and go to state 43
+
+
+state 43
+
+    (13) expression -> ABS LPAREN factor MINUS factor RPAREN .
+
+    $end            reduce using rule 13 (expression -> ABS LPAREN factor MINUS factor RPAREN .)
+

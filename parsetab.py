@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'DIVIDE EARTH FIRE METAL MINUS MODULO MULTIPLY NUMBER PLUS WATER WOOD WORDexpression : WATER PLUS FIRE\n                    | FIRE PLUS WATERexpression : FIRE PLUS METAL\n                    | METAL PLUS FIREexpression : WOOD PLUS EARTH\n                    | EARTH PLUS WOODexpression : METAL PLUS WOOD\n                    | WOOD PLUS METALexpression : EARTH PLUS WATER\n                    | WATER PLUS EARTHterm : WORDexpression : term PLUS termexpression : factor PLUS factorexpression : factor MINUS factorexpression : factor DIVIDE factorexpression : factor MULTIPLY factorexpression : factor MODULO factorfactor : NUMBER'
+_lr_signature = 'ABS DIVIDE EARTH FIRE LPAREN METAL MINUS MODULO MULTIPLY NUMBER PLUS RPAREN WATER WOOD WORDexpression : WATER PLUS FIRE\n                  | FIRE PLUS WATERexpression : FIRE PLUS METAL\n                  | METAL PLUS FIREexpression : WOOD PLUS EARTH\n                  | EARTH PLUS WOODexpression : METAL PLUS WOOD\n                  | WOOD PLUS METALexpression : EARTH PLUS WATER\n                  | WATER PLUS EARTHterm : WORDexpression : term PLUS termexpression : ABS LPAREN factor MINUS factor RPAREN\n                  | factor PLUS factor\n                  | factor MINUS factor\n                  | factor DIVIDE factor\n                  | factor MULTIPLY factor\n                  | factor MODULO factorfactor : NUMBER'
     
-_lr_action_items = {'WATER':([0,12,15,],[2,24,31,]),'FIRE':([0,11,13,],[3,22,26,]),'METAL':([0,12,14,],[4,25,29,]),'WOOD':([0,13,15,],[5,27,30,]),'EARTH':([0,11,14,],[6,23,28,]),'WORD':([0,16,],[9,9,]),'NUMBER':([0,17,18,19,20,21,],[10,10,10,10,10,10,]),'$end':([1,9,10,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,],[0,-11,-18,-1,-10,-2,-3,-4,-7,-5,-8,-6,-9,-12,-13,-14,-15,-16,-17,]),'PLUS':([2,3,4,5,6,7,8,9,10,],[11,12,13,14,15,16,17,-11,-18,]),'MINUS':([8,10,],[18,-18,]),'DIVIDE':([8,10,],[19,-18,]),'MULTIPLY':([8,10,],[20,-18,]),'MODULO':([8,10,],[21,-18,]),}
+_lr_action_items = {'WATER':([0,13,16,],[2,26,33,]),'FIRE':([0,12,14,],[3,24,28,]),'METAL':([0,13,15,],[4,27,31,]),'WOOD':([0,14,16,],[5,29,32,]),'EARTH':([0,12,15,],[6,25,30,]),'ABS':([0,],[8,]),'WORD':([0,17,],[10,10,]),'NUMBER':([0,18,19,20,21,22,23,41,],[11,11,11,11,11,11,11,11,]),'$end':([1,10,11,24,25,26,27,28,29,30,31,32,33,34,36,37,38,39,40,43,],[0,-11,-19,-1,-10,-2,-3,-4,-7,-5,-8,-6,-9,-12,-14,-15,-16,-17,-18,-13,]),'PLUS':([2,3,4,5,6,7,9,10,11,],[12,13,14,15,16,17,19,-11,-19,]),'LPAREN':([8,],[18,]),'MINUS':([9,11,35,],[20,-19,41,]),'DIVIDE':([9,11,],[21,-19,]),'MULTIPLY':([9,11,],[22,-19,]),'MODULO':([9,11,],[23,-19,]),'RPAREN':([11,42,],[-19,43,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'expression':([0,],[1,]),'term':([0,16,],[7,32,]),'factor':([0,17,18,19,20,21,],[8,33,34,35,36,37,]),}
+_lr_goto_items = {'expression':([0,],[1,]),'term':([0,17,],[7,34,]),'factor':([0,18,19,20,21,22,23,41,],[9,35,36,37,38,39,40,42,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,22 +27,23 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> expression","S'",1,None,None,None),
-  ('expression -> WATER PLUS FIRE','expression',3,'p_expression_water_plus','element_yacc.py',21),
-  ('expression -> FIRE PLUS WATER','expression',3,'p_expression_water_plus','element_yacc.py',22),
-  ('expression -> FIRE PLUS METAL','expression',3,'p_expression_fire_plus','element_yacc.py',26),
-  ('expression -> METAL PLUS FIRE','expression',3,'p_expression_fire_plus','element_yacc.py',27),
-  ('expression -> WOOD PLUS EARTH','expression',3,'p_expression_wood_plus','element_yacc.py',31),
-  ('expression -> EARTH PLUS WOOD','expression',3,'p_expression_wood_plus','element_yacc.py',32),
-  ('expression -> METAL PLUS WOOD','expression',3,'p_expression_metal_plus','element_yacc.py',36),
-  ('expression -> WOOD PLUS METAL','expression',3,'p_expression_metal_plus','element_yacc.py',37),
-  ('expression -> EARTH PLUS WATER','expression',3,'p_expression_earth_plus','element_yacc.py',41),
-  ('expression -> WATER PLUS EARTH','expression',3,'p_expression_earth_plus','element_yacc.py',42),
-  ('term -> WORD','term',1,'p_term_word','element_yacc.py',46),
-  ('expression -> term PLUS term','expression',3,'p_expression_word_plus','element_yacc.py',50),
-  ('expression -> factor PLUS factor','expression',3,'p_expression_number_plus','element_yacc.py',56),
-  ('expression -> factor MINUS factor','expression',3,'p_expression_number_minus','element_yacc.py',60),
-  ('expression -> factor DIVIDE factor','expression',3,'p_expression_number_divide','element_yacc.py',64),
-  ('expression -> factor MULTIPLY factor','expression',3,'p_expression_number_multiply','element_yacc.py',71),
-  ('expression -> factor MODULO factor','expression',3,'p_expression_number_modulo','element_yacc.py',75),
-  ('factor -> NUMBER','factor',1,'p_factor_num','element_yacc.py',82),
+  ('expression -> WATER PLUS FIRE','expression',3,'p_expression_water_plus','element_yacc.py',22),
+  ('expression -> FIRE PLUS WATER','expression',3,'p_expression_water_plus','element_yacc.py',23),
+  ('expression -> FIRE PLUS METAL','expression',3,'p_expression_fire_plus','element_yacc.py',27),
+  ('expression -> METAL PLUS FIRE','expression',3,'p_expression_fire_plus','element_yacc.py',28),
+  ('expression -> WOOD PLUS EARTH','expression',3,'p_expression_wood_plus','element_yacc.py',32),
+  ('expression -> EARTH PLUS WOOD','expression',3,'p_expression_wood_plus','element_yacc.py',33),
+  ('expression -> METAL PLUS WOOD','expression',3,'p_expression_metal_plus','element_yacc.py',37),
+  ('expression -> WOOD PLUS METAL','expression',3,'p_expression_metal_plus','element_yacc.py',38),
+  ('expression -> EARTH PLUS WATER','expression',3,'p_expression_earth_plus','element_yacc.py',42),
+  ('expression -> WATER PLUS EARTH','expression',3,'p_expression_earth_plus','element_yacc.py',43),
+  ('term -> WORD','term',1,'p_term_word','element_yacc.py',47),
+  ('expression -> term PLUS term','expression',3,'p_expression_word_plus','element_yacc.py',51),
+  ('expression -> ABS LPAREN factor MINUS factor RPAREN','expression',6,'p_expression_number_functions','element_yacc.py',55),
+  ('expression -> factor PLUS factor','expression',3,'p_expression_number_functions','element_yacc.py',56),
+  ('expression -> factor MINUS factor','expression',3,'p_expression_number_functions','element_yacc.py',57),
+  ('expression -> factor DIVIDE factor','expression',3,'p_expression_number_functions','element_yacc.py',58),
+  ('expression -> factor MULTIPLY factor','expression',3,'p_expression_number_functions','element_yacc.py',59),
+  ('expression -> factor MODULO factor','expression',3,'p_expression_number_functions','element_yacc.py',60),
+  ('factor -> NUMBER','factor',1,'p_factor_num','element_yacc.py',81),
 ]

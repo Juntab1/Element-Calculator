@@ -52,12 +52,15 @@ def p_expression_word_plus(p):
     p[0] = F"{p[1]} + {p[3]} can't be added!"
 
 def p_expression_number_functions(p):
-    '''expression : factor PLUS factor
+    '''expression : ABS LPAREN factor MINUS factor RPAREN
+                  | factor PLUS factor
                   | factor MINUS factor
                   | factor DIVIDE factor
                   | factor MULTIPLY factor
                   | factor MODULO factor'''
-    if (p[2] == '+'):
+    if (p[1] == 'ABS'):
+        p[0] = abs(p[3] - p[5])
+    elif (p[2] == '+'):
         p[0] = p[1] + p[3]
     elif (p[2] == '-'):
         p[0] = p[1] - p[3]

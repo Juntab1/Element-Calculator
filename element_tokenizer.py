@@ -20,6 +20,9 @@ class MyLexer(object):
         'FIRE',
         'WOOD',
         'METAL',
+        'LPAREN',
+        'RPAREN',
+        'ABS',
     )
 
     t_PLUS = r'\+'
@@ -27,6 +30,8 @@ class MyLexer(object):
     t_MULTIPLY = r'\*'
     t_DIVIDE = r'\/'
     t_MODULO = r'\%'
+    t_LPAREN = r'\('
+    t_RPAREN = r'\)'
 
     def t_newline(self, t):
         r'\n+'
@@ -68,6 +73,11 @@ class MyLexer(object):
         r'[0-9]+'
         t.value = int(t.value)
         return t
+    
+    def t_ABS(self, t):
+        r'ABS'
+        t.value = str(t.value)
+        return t
 
     def t_error(self, t):
         t.value = t.value.strip()
@@ -96,6 +106,7 @@ class MyLexer(object):
 def main():
     m = MyLexer()
     m.build()
+
 
 
 
